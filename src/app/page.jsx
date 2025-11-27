@@ -1,6 +1,19 @@
 import React from "react";
+import Link from 'next/link'
 
-export default function () {
+export default async function HomePage() {
+  let featured = []
+  try {
+    const res = await fetch('http://localhost:3001/details', { cache: 'no-store' })
+    if (res.ok) {
+      const all = await res.json()
+      featured = (all || []).slice(0, 3)
+    }
+  } catch (err) {
+    // silent fail — page will render without featured events
+    console.error('Failed to fetch featured events', err)
+  }
+
   return (
     <div className="bg-blue-50 border border-blue-50 ">
 
@@ -23,6 +36,32 @@ export default function () {
             </a>
           </div>
         </div>
+
+        {/* Featured events */}
+        {featured && featured.length > 0 && (
+          <section className="py-8 px-4 sm:px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto">
+              <h2 className="text-2xl font-semibold text-slate-800 mb-6 text-center">Featured Events</h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {featured.map((ev) => (
+                  <Link key={ev._id} href={`/events/${ev._id}`} className="block bg-white rounded-lg shadow hover:shadow-lg overflow-hidden">
+                    <div className="h-44 w-full overflow-hidden">
+                      <img src={ev.image || 'https://via.placeholder.com/600x400'} alt={ev.title} className="w-full h-full object-cover" />
+                    </div>
+                    <div className="p-4">
+                      <h3 className="text-lg font-bold text-slate-800">{ev.title}</h3>
+                      <p className="text-sm text-slate-600 line-clamp-2 mt-2">{ev.description}</p>
+                      <div className="mt-3 flex items-center justify-between">
+                        <span className="text-sm text-slate-500">{ev.price || 'Free'}</span>
+                        <span className="text-sm text-slate-500">{ev.location || ''}</span>
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
 
         <div className="py-16 px-4 sm:px-6 lg:px-8 bg-sky-50 rounded-3xl">
           <div className="max-w-7xl ">
@@ -68,7 +107,7 @@ export default function () {
               </div>
 
 
-              <div class="p-6 bg-purple-50 rounded-xl hover:shadow-lg transition-all hover:-translate-y-1 border border-purple-100">
+              <div className="p-6 bg-purple-50 rounded-xl hover:shadow-lg transition-all hover:-translate-y-1 border border-purple-100">
 
                 <div className="w-12 h-12 bg-purple-600 rounded-lg flex items-center justify-center mb-4">
                   <svg
