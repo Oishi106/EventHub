@@ -129,7 +129,7 @@ export default function Contract() {
 
           <div className="mt-4 grid sm:grid-cols-2 gap-4">
             <div className="p-4 border rounded">
-              <p className="font-semibold">Partnerships</p>
+              <p className="font-semibold">Partnerships       </p>
               <p className="text-sm text-slate-600">partners@eventhub.example</p>
             </div>
             <div className="p-4 border rounded">
