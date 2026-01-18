@@ -11,7 +11,7 @@ export default function Login() {
   const [error, setError] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);         
 
   const provider = new GoogleAuthProvider();
 

@@ -14,7 +14,7 @@ export default function EventDetailPage({ params }) {
   const [eventData, setEventData] = useState(null)
   const [user, setUser] = useState(null)
   const [authLoading, setAuthLoading] = useState(true)
-  const router = useRouter()
+  const router = useRouter()   
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
