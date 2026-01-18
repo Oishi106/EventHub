@@ -11,10 +11,10 @@ export default function EventDetailPage({ params }) {
   const [error, setError] = useState('')
   const [eventData, setEventData] = useState(null)
 
-  useEffect(() => {
+  useEffect(() => {    
     const loadDetails = async () => {
       setError('')
-      setEventData(null)
+      setEventData(null)        
 
       if (!routeId) {
         setError('Event ID is missing from the route')
@@ -31,7 +31,7 @@ export default function EventDetailPage({ params }) {
         setError(err.message || 'Failed to load event')
       } finally {
         setLoading(false)
-      }
+      }         
     }
 
     loadDetails()
