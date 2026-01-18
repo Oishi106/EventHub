@@ -1,10 +1,11 @@
 import React from "react";
 import Link from 'next/link'
 import HeroCarousel from '@/components/HeroCarousel'
-
+export const dynamic = "force-dynamic";
 export default async function HomePage() {
   let featured = []
   try {
+
     const res = await fetch('https://my-first-project-with-next-backend.vercel.app/details', { cache: 'no-store' })
     if (res.ok) {
       const all = await res.json()

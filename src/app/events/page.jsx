@@ -1,6 +1,9 @@
 import Link from 'next/link'
 import React from 'react'
 
+    
+export const dynamic = "force-dynamic";
+
 export default async function EventPage() {
     // Fetch all event details from the local MongoDB API
     const res = await fetch("https://my-first-project-with-next-backend.vercel.app/details", { cache: 'no-store' })

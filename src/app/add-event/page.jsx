@@ -7,6 +7,7 @@ import { onAuthStateChanged } from 'firebase/auth'
 import { useRouter } from 'next/navigation'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
+export const dynamic = "force-dynamic";
 
 export default function AddEventPage() {
   const [user, setUser] = useState(null)

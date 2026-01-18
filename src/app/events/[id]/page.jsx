@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, use } from 'react'
 import Link from 'next/link'
+export const dynamic = "force-dynamic";
 
 export default function EventDetailPage({ params }) {
   const { id } = use(params)
