@@ -2,9 +2,6 @@
 
 import React, { useState, useEffect, use } from 'react'
 import Link from 'next/link'
-import { auth } from '@/app/auth/firebase.config'
-import { onAuthStateChanged } from 'firebase/auth'
-import { useRouter } from 'next/navigation'
 
 export default function EventDetailPage({ params }) {
   const { id } = use(params)
@@ -12,29 +9,8 @@ export default function EventDetailPage({ params }) {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [eventData, setEventData] = useState(null)
-  const [user, setUser] = useState(null)
-  const [authLoading, setAuthLoading] = useState(true)
-  const router = useRouter()   
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser)
-      setAuthLoading(false)
-
-      if (!currentUser) {
-        // Store the current page as redirect destination
-        localStorage.setItem('redirectAfterLogin', `/events/${routeId}`)
-        router.push('/auth/login')
-      }
-    })
-
-    return () => unsubscribe()
-  }, [routeId, router])
-
-  useEffect(() => {
-    // Only load details if user is authenticated
-    if (authLoading || !user) return
-
     const loadDetails = async () => {
       setError('')
       setEventData(null)
@@ -58,38 +34,22 @@ export default function EventDetailPage({ params }) {
     }
 
     loadDetails()
-  }, [routeId, user, authLoading])
+  }, [routeId])
 
   return (
     <>
-
-
       <main className="max-w-4xl mx-auto px-6 py-12">
         <div className="bg-white rounded-lg shadow p-6">
-          {authLoading && (
-            <div className="flex items-center justify-center py-12">
-              <span className="loading loading-spinner loading-lg text-primary"></span>
-              <p className="ml-3 text-slate-600">Checking authentication...</p>
-            </div>
-          )}
-
-          {!authLoading && !user && (
-            <div className="text-center py-12">
-              <p className="text-slate-600 mb-4">Please log in to view event details.</p>
-              <Link href="/auth/login" className="btn btn-primary">Go to Login</Link>
-            </div>
-          )}
-
-          {!authLoading && user && loading && (
+          {loading && (
             <div className="flex items-center justify-center py-12">
               <span className="loading loading-spinner loading-lg text-primary"></span>
               <p className="ml-3 text-slate-600">Loading event details...</p>
             </div>
           )}
 
-          {!authLoading && user && error && !loading && <div className="text-red-700 bg-red-50 p-3 rounded">{error}</div>}
+          {error && !loading && <div className="text-red-700 bg-red-50 p-3 rounded">{error}</div>}
 
-          {!authLoading && user && !loading && eventData && (
+          {!loading && eventData && (
             <>
               <div className="rounded-lg overflow-hidden mb-6">
                 <img
