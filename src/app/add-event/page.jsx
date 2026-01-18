@@ -79,7 +79,7 @@ export default function AddEventPage() {
       }
 
       // Send to backend
-      const response = await fetch('http://localhost:3001/events', {
+      const response = await fetch('https://my-first-project-with-next-backend.vercel.app/events', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

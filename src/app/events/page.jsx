@@ -3,7 +3,7 @@ import React from 'react'
 
 export default async function EventPage() {
     // Fetch all event details from the local MongoDB API
-    const res = await fetch("http://localhost:3001/details", { cache: 'no-store' })
+    const res = await fetch("https://my-first-project-with-next-backend.vercel.app/details", { cache: 'no-store' })
     const data = await res.json()
 
     

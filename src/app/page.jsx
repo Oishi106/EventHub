@@ -5,7 +5,7 @@ import HeroCarousel from '@/components/HeroCarousel'
 export default async function HomePage() {
   let featured = []
   try {
-    const res = await fetch('http://localhost:3001/details', { cache: 'no-store' })
+    const res = await fetch('https://my-first-project-with-next-backend.vercel.app/details', { cache: 'no-store' })
     if (res.ok) {
       const all = await res.json()
       featured = (all || []).slice(0, 3)

@@ -22,7 +22,7 @@ export default function EventDetailPage({ params }) {
       }
 
       try {
-        const res = await fetch(`http://localhost:3001/details/${routeId}`)
+        const res = await fetch(`https://my-first-project-with-next-backend.vercel.app/details/${routeId}`)
         if (!res.ok) throw new Error(`API returned ${res.status}`)
         const data = await res.json()
         setEventData(data)

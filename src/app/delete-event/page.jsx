@@ -42,7 +42,7 @@ export default function DeleteEventPage() {
   const fetchEvents = async () => {
     try {
       setLoading(true)
-      const response = await fetch('http://localhost:3001/details')
+      const response = await fetch('https://my-first-project-with-next-backend.vercel.app/details')
       
       if (!response.ok) {
         throw new Error('Failed to fetch events')
@@ -69,7 +69,7 @@ export default function DeleteEventPage() {
       setDeleting(eventId)
 
       // Send delete request to backend
-      const response = await fetch(`http://localhost:3001/details/${eventId}`, {
+      const response = await fetch(`https://my-first-project-with-next-backend.vercel.app/details/${eventId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
