@@ -2,7 +2,7 @@
 
 A modern full-stack Event Management platform where users can explore upcoming events, view event details, and authenticated users can add and manage events seamlessly.
 
-## 🌐 Live Site: https://your-event-hub-project.vercel.app/
+## 🌐 Live Site: https://event-hub-puce-iota.vercel.app/
 
 ## 🖼️ Project Overview
 
